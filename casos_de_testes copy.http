@@ -1,0 +1,174 @@
+# Seja bem vinda
+GET http://127.0.0.1:8000/ HTTP/1.1
+content-type: application/json
+
+#######################################
+############  Usuário  ################
+#######################################
+
+# Criar usuário1
+POST http://127.0.0.1:8000/usuario HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "nome": "Maria da Silva",
+    "email": "maria_silva@gmail.com",
+    "senha": "ms12340"
+}
+
+###
+# Criar usuário2
+POST http://127.0.0.1:8000/usuario HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "nome": "João de Souza",
+    "email": "joaosouza@gmail.com",
+    "senha": "abc12345."
+}
+
+###
+# Listar usuários
+GET http://127.0.0.1:8000/usuario HTTP/1.1
+content-type: application/json
+
+###
+# Pesquisar usuário pelo nome
+GET http://127.0.0.1:8000/usuario/search?nome=Maria da Silva HTTP/1.1
+content-type: application/json
+
+###
+# Pesquisar emails com mesmo dominio
+GET http://127.0.0.1:8000/usuario/email/search?dominio=gmail HTTP/1.1
+content-type: application/json
+
+###
+# Pesquisar usuário pelo código
+GET http://127.0.0.1:8000/usuario/2 HTTP/1.1
+content-type: application/json
+
+###
+# Deletar usuário pelo código
+DELETE http://127.0.0.1:8000/usuario/2 HTTP/1.1
+content-type: application/json
+
+
+#######################################
+############  Endereço  ###############
+#######################################
+
+# Criar endereço1
+POST http://127.0.0.1:8000/endereco HTTP/1.1
+content-type: application/json
+
+{
+    "usuario": 1,
+    "endereco": {
+        "id": 1,
+        "rua": "Rua Ladrilhada",
+        "cep": "99999-999",
+        "cidade": "São Paulo",
+        "estado": "SP"
+    }
+}
+
+###
+# Criar endereço2
+POST http://127.0.0.1:8000/endereco HTTP/1.1
+content-type: application/json
+
+{
+    "usuario": 1,
+    "endereco": {
+        "id": 2,
+        "rua": "Rua Nove",
+        "cep": "91789-000",
+        "cidade": "Curitiba",
+        "estado": "PR"
+    }
+}
+
+###
+# Criar endereço2
+POST http://127.0.0.1:8000/endereco HTTP/1.1
+content-type: application/json
+
+{
+    "usuario": 2,
+    "endereco": {
+        "id": 1,
+        "rua": "Rua das Flores",
+        "cep": "90090-123",
+        "cidade": "Florianópolis",
+        "estado": "SC"
+    }
+}
+
+###
+# Listar enderecos do usuário
+GET http://127.0.0.1:8000/usuario/1/endereco HTTP/1.1
+content-type: application/json
+
+###
+# Deletar endereco pelo código
+DELETE http://127.0.0.1:8000/usuario/1/endereco/1 HTTP/1.1
+content-type: application/json
+
+#######################################
+############  Produto  ################
+#######################################
+
+# Criar produto1
+POST http://127.0.0.1:8000/produto HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "nome": "Sorvete de Baunilha",
+    "descricao": "Doce gelado 1,5L",
+    "preco": 9.99
+}
+
+###
+# Criar produto2
+POST http://127.0.0.1:8000/produto HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "nome": "Álbum Copa Do Mundo + figurinhas",
+    "descricao": "Álbum Da Copa Do Mundo Qatar 2022 + 10 figurinhas",
+    "preco": 41.98
+}
+
+###
+# Listar produtos
+GET http://127.0.0.1:8000/produto HTTP/1.1
+content-type: application/json
+
+###
+# Deletar produto pelo código
+DELETE http://127.0.0.1:8000/produto/1 HTTP/1.1
+content-type: application/json
+
+###
+# Adicionar produtos no carrinho
+POST http://127.0.0.1:8000/carrinho/1/1 HTTP/1.1
+content-type: application/json
+
+###
+# Listar carrinho do usuário
+GET http://127.0.0.1:8000/carrinho/1 HTTP/1.1
+content-type: application/json
+
+###
+# Listar total do carrinho do usuário
+GET http://127.0.0.1:8000/carrinho/total/1 HTTP/1.1
+content-type: application/json
+
+###
+# Deletar carrinho do usuário
+DELETE http://127.0.0.1:8000/carrinho/1 HTTP/1.1
+content-type: application/json
